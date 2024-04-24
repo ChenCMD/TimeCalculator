@@ -1,0 +1,23 @@
+# 00:00 + 1d + 2h03m - 00:00
+expression = term , [ { ( "+" | "-" ) , term } ];
+term = [ { white_space } ] , ( time | "(" , expression , ")" ) , [ { white_space } ];
+
+time = complex_time | simple_time;
+
+complex_time =
+  | complex_time_d , [ complex_time_h ] , [ complex_time_m ] , [ complex_time_s ]
+  | complex_time_h , [ complex_time_m ] , [ complex_time_s ]
+  | complex_time_m , [ complex_time_s ]
+  | complex_time_s;
+complex_time_d = digits , "d";
+complex_time_h = digits , "h";
+complex_time_m = digits , "m";
+complex_time_s = digits , "s";
+
+simple_time  = digits , ":" , digits;
+
+
+digits = digit , [ { digit } ];
+digit  = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+
+white_space = ? white-space-characters ?;

@@ -1,0 +1,41 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# node dependencies and artifacts
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# LSP directories
+**/.bloop
+**/.bsp
+**/.metals
+
+# sbt specific
+project/**
+!project/build.properties
+!project/plugins.sbt
+
+target
+dist
+
+# Scala worksheets
+*.worksheet.sc
