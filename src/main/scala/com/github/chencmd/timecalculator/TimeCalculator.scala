@@ -5,7 +5,6 @@ import scala.scalajs.js.annotation.JSImport
 
 import com.raquo.laminar.api.L.*
 import org.scalajs.dom
-import javax.naming.spi.DirStateFactory.Result
 
 @js.native @JSImport("/github-mark.svg", JSImport.Default)
 val githubMark: String = js.native
@@ -58,9 +57,7 @@ def Description = {
   div(
     p("時刻の加減算を行う自分用の雑なツールだよ"),
     p("時刻の形式は以下のようなものが使えるよ"),
-    table(
-      examples.map { case (input, desc) => tr(styledTD(input), styledTD(desc)) }
-    ),
+    table(examples.map { case (input, desc) => tr(styledTD(input), styledTD(desc)) }),
     margin := "2.5em 0"
   )
 }
