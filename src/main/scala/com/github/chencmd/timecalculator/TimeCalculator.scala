@@ -26,8 +26,14 @@ def TimeCalculator() = {
       ),
       span("=", padding := "0 0.5em"),
       select(
-        ResultFormat.values.map(fmt => option(value := fmt.ordinal.toString, fmt.displayName)),
-        onChange.mapToValue.filter("^[0-9]+$".r.matches).map(s => ResultFormat.fromOrdinal(s.toInt)) --> format.writer
+        ResultFormat.values.map { fmt =>
+          option(
+            fmt.displayName,
+            value := fmt.ordinal.toString,
+            selected <-- format.signal.map(_ == fmt)
+          )
+        },
+        onChange.mapToValue.map(s => ResultFormat.fromOrdinal(s.toInt)) --> format.writer
       )
     ),
     div(
