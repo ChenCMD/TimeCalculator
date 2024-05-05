@@ -25,17 +25,17 @@ class ExpressionParser extends RegexParsers {
   lazy val binaryOperator: Parser[(Expression, Expression) => Expression] =
     "+" ^^^ Expression.Add.apply | "-" ^^^ Expression.Subtract.apply
 
-  lazy val term: Parser[Expression] = allowWhiteSpace((time ^^ Expression.Literal.apply) | ("(" ~> expression <~ ")"))
+  lazy val term: Parser[Expression] = allowWhiteSpace(time | ("(" ~> expression <~ ")"))
 
-  lazy val time: Parser[Time] = simpleTime | complexTime
+  lazy val time: Parser[Expression.Literal] = (simpleTime | complexTime) ^^ Expression.Literal.apply
 
   lazy val complexTime: Parser[Time] = for {
-    day    <- (integer <~ "d").?
-    hour   <- (integer <~ "h").?
-    minute <- (integer <~ "m").?
-    second <- (integer <~ "s").?
-    if day.isDefined || hour.isDefined || minute.isDefined || second.isDefined
-  } yield Time(day.getOrElse(0), hour.getOrElse(0), minute.getOrElse(0), second.getOrElse(0))
+    d <- (integer <~ "d").?
+    h <- (integer <~ "h").?
+    m <- (integer <~ "m").?
+    s <- (integer <~ "s").?
+    if d.isDefined || h.isDefined || m.isDefined || s.isDefined
+  } yield Time(d.getOrElse(0), h.getOrElse(0), m.getOrElse(0), s.getOrElse(0))
 
   lazy val simpleTime: Parser[Time] = for {
     (hour ~ _ ~ minute) <- integer ~ ":" ~ integer
