@@ -41,7 +41,7 @@ class ExpressionParser extends RegexParsers {
     (hour ~ _ ~ minute) <- integer ~ ":" ~ integer
   } yield Time(0, hour, minute, 0)
 
-  lazy val integer: Parser[Int] = """-?\d+""".r ^^ { _.toInt }
+  lazy val integer: Parser[BigInt] = """-?\d+""".r ^^ BigInt.apply
 
   def singletonLit(s: String): Parser[s.type] = s ^^^ s
 
