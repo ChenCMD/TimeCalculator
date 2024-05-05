@@ -38,8 +38,8 @@ class ExpressionParser extends RegexParsers {
   } yield Time(d.getOrElse(0), h.getOrElse(0), m.getOrElse(0), s.getOrElse(0))
 
   lazy val simpleTime: Parser[Time] = for {
-    (hour ~ _ ~ minute) <- integer ~ ":" ~ integer
-  } yield Time(0, hour, minute, 0)
+    (hour ~ _ ~ minute ~ seconds) <- integer ~ ":" ~ integer ~ (":" ~> integer).?
+  } yield Time(0, hour, minute, seconds.getOrElse(0))
 
   lazy val integer: Parser[BigInt] = """-?\d+""".r ^^ BigInt.apply
 

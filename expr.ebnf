@@ -14,7 +14,7 @@ complex_time_h = digits , "h";
 complex_time_m = digits , "m";
 complex_time_s = digits , "s";
 
-simple_time  = digits , ":" , digits;
+simple_time  = digits , ":" , digits , [ ":" , digits ];
 
 
 digits = digit , [ { digit } ];
