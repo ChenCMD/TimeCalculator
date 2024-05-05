@@ -1,7 +1,5 @@
 package com.github.chencmd.timecalculator
 
-import scala.scalajs.js
-
 import com.raquo.laminar.api.L.*
 import org.scalajs.dom
 
