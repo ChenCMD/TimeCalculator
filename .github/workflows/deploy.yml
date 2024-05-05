@@ -51,3 +51,4 @@ jobs:
         branch: gh-pages
         folder: ./dist
         commit-message: "Deployed to GitHub Pages from ${{ github.sha }}"
+        token: ${{ secrets.GITHUB_TOKEN }}
