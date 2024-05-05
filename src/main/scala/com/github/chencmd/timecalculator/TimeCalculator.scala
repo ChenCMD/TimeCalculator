@@ -23,7 +23,6 @@ def TimeCalculator() = {
     div(
       input(
         `type`          := "text",
-        idAttr          := "expression",
         size <-- expr.signal.map(s => Math.max(s.length - 2, 10)),
         controlled(
           value <-- expr.signal,
