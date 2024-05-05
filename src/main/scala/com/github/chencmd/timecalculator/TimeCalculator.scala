@@ -47,7 +47,6 @@ def TimeCalculator() = {
         onChange.mapToValue.map(s => ResultFormat.fromOrdinal(s.toInt)) --> format.writer
       )
     ),
-    div("AST: ", child.text <-- expr.signal.map(ExpressionParser.parse(_).toString)),
     div(
       child.text <-- {
         for {
