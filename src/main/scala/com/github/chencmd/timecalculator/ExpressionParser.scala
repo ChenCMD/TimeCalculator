@@ -45,5 +45,5 @@ class ExpressionParser extends RegexParsers {
 
   def singletonLit(s: String): Parser[s.type] = s ^^^ s
 
-  def allowWhiteSpace[T](s: Parser[T]): Parser[T] = whiteSpace.* ~> s <~ whiteSpace.*
+  def allowWhiteSpace[A](s: Parser[A]): Parser[A] = whiteSpace.* ~> s <~ whiteSpace.*
 }
