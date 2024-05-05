@@ -13,7 +13,13 @@ def TimeCalculator() = {
   val expr   = Var("01:00 + 02:12 - 00:29")
   val format = Var(ResultFormat.HM)
   mainTag(
-    h1("Time Calculator", forId := "expression"),
+    h1(
+      "Time Calculator",
+      a(
+        img(src := "public/github-mark.svg", width := "0.9em", height := "0.9em", padding := "0 0.5em"),
+        href := "https://github.com/ChenCMD/TimeCalculator"
+      )
+    ),
     div(
       input(
         `type`          := "text",
