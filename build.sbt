@@ -4,7 +4,18 @@ lazy val timeCalculator = project
   .in(file("."))
   .enablePlugins(ScalaJSPlugin) // Enable the Scala.js plugin in this project
   .settings(
-    scalaVersion := "3.4.1",
+    scalaVersion      := "3.4.1",
+    semanticdbEnabled := true,
+    semanticdbVersion := scalafixSemanticdb.revision,
+    scalacOptions ++= Seq(
+      "-deprecation",
+      "-feature",
+      "-unchecked",
+      "-Ykind-projector:underscores",
+      "-no-indent",
+      "-Wunused:all",
+      "-source:future"
+    ),
 
     // Tell Scala.js that this is an application with a main method
     scalaJSUseMainModuleInitializer := true,

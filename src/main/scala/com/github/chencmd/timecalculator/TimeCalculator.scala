@@ -1,10 +1,9 @@
 package com.github.chencmd.timecalculator
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.*
 
+import com.raquo.laminar.api.L.*
 import org.scalajs.dom
-import com.raquo.laminar.api.L.{*, given}
 
 @main
 def main(): Unit = {
