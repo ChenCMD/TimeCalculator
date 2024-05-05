@@ -1,7 +1,13 @@
 package com.github.chencmd.timecalculator
 
+import scala.scalajs.js
+import scala.scalajs.js.annotation.JSImport
+
 import com.raquo.laminar.api.L.*
 import org.scalajs.dom
+
+@js.native @JSImport("/public/github-mark.svg", JSImport.Default)
+val githubMark: String = js.native
 
 @main
 def main(): Unit = {
@@ -16,7 +22,7 @@ def TimeCalculator() = {
     h1(
       "Time Calculator",
       a(
-        img(src := "public/github-mark.svg", width := "0.9em", height := "0.9em", padding := "0 0.5em"),
+        img(src := githubMark, width := "0.9em", height := "0.9em", paddingLeft := "1em"),
         href := "https://github.com/ChenCMD/TimeCalculator"
       )
     ),
@@ -41,6 +47,7 @@ def TimeCalculator() = {
         onChange.mapToValue.map(s => ResultFormat.fromOrdinal(s.toInt)) --> format.writer
       )
     ),
+    div("AST: ", child.text <-- expr.signal.map(ExpressionParser.parse(_).toString)),
     div(
       child.text <-- {
         for {
