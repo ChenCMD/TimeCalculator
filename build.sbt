@@ -26,6 +26,7 @@ lazy val timeCalculator = project
      */
     libraryDependencies ++= Seq(
       "org.scala-js"           %%% "scalajs-dom"              % "2.4.0",
-      "org.scala-lang.modules" %%% "scala-parser-combinators" % "2.4.0"
+      "org.scala-lang.modules" %%% "scala-parser-combinators" % "2.4.0",
+      "com.raquo"              %%% "laminar"                  % "16.0.0"
     )
   )
