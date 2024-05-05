@@ -27,7 +27,7 @@ jobs:
         path: ./node_modules
         key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Cache SNT dependencies
+    - name: Cache SBT dependencies
       uses: actions/cache@v4
       with:
         path: |
