@@ -6,7 +6,7 @@ import scala.scalajs.js.annotation.JSImport
 import com.raquo.laminar.api.L.*
 import org.scalajs.dom
 
-@js.native @JSImport("/public/github-mark.svg", JSImport.Default)
+@js.native @JSImport("/github-mark.svg", JSImport.Default)
 val githubMark: String = js.native
 
 @main
@@ -16,15 +16,34 @@ def main(): Unit = {
 }
 
 def TimeCalculator() = {
-  val expr   = Var("01:00 + 02:12 - 00:29")
+  val expr   = Var("2:22 + 1d2h3m - (9h03m - 3h)")
   val format = Var(ResultFormat.HM)
   mainTag(
+    margin := "0 1em",
     h1(
       "Time Calculator",
       a(
         img(src := githubMark, width := "0.9em", height := "0.9em", paddingLeft := "1em"),
         href := "https://github.com/ChenCMD/TimeCalculator"
       )
+    ),
+    div(
+      p("時刻の加減算を行う自分用の雑なツールだよ"),
+      p("時刻の形式は以下のようなものが使えるよ"),
+      table(
+        {
+          def styledTD(s: String) = td(s, textAlign := "end", padding := "0em 1em", border := "solid black", borderWidth := "0 1px")
+          val examples            = List(
+            "1:15"     -> "1 時間 15 分",
+            "1:02:3"   -> "1 時間 2 分 3 秒",
+            "1d"       -> "1 日",
+            "2d5h3s"   -> "2 日 5 時間 3 秒",
+            "1d2h3m4s" -> "1 日 2 時間 3 分 4 秒"
+          )
+          examples.map { case (input, desc) => tr(styledTD(input), styledTD(desc)) }
+        }*
+      ),
+      margin := "2em 0",
     ),
     div(
       input(
@@ -56,7 +75,8 @@ def TimeCalculator() = {
           case Right(expr) => s"$rawExpr = ${format.use(expr.eval)}"
           case Left(err)   => s"err: $err"
         }
-      }
+      },
+      padding := "1em 0"
     )
   )
 }
