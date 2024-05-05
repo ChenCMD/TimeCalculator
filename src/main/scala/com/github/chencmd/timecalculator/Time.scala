@@ -12,6 +12,6 @@ object Time {
   val HOURS_SEC   = 60 * 60
   val MINUTES_SEC = 60
 
-  def apply(seconds: BigInt): Time                   = new Time(seconds)
+  def apply(seconds: BigInt): Time                            = new Time(seconds)
   def apply(d: BigInt, h: BigInt, m: BigInt, s: BigInt): Time = Time(d * DAYS_SEC + h * HOURS_SEC + m * MINUTES_SEC + s)
 }
