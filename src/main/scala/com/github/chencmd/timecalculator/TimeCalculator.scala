@@ -72,7 +72,8 @@ def UserInput(expressionVar: Var[String], formatVar: Var[ResultFormat]) = {
         value <-- expressionVar.signal,
         onInput.mapToValue.filter(expressionInputValidator) --> expressionVar.writer
       ),
-      fontSize        := "1em"
+      fontSize        := "1em",
+      inContext { el => onFocus --> { _ => el.ref.setSelectionRange(0, el.ref.value.length) } }
     ),
     span("=", padding := "0 0.5em"),
     select(
