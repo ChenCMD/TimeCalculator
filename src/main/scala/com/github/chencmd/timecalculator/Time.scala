@@ -1,10 +1,11 @@
 package com.github.chencmd.timecalculator
 
-case class Time(seconds: BigInt) {
-  def toDays(): BigInt                         = seconds / Time.DAYS_SEC
-  def toHours(over: Boolean = false): BigInt   = (if over then seconds else seconds.abs % Time.DAYS_SEC) / Time.HOURS_SEC
-  def toMinutes(over: Boolean = false): BigInt = (if over then seconds else seconds.abs % Time.HOURS_SEC) / Time.MINUTES_SEC
-  def toSeconds(over: Boolean = false): BigInt = (if over then seconds else seconds.abs % Time.MINUTES_SEC)
+case class Time private (seconds: BigInt) {
+  def isPositive: Boolean                      = 0 <= seconds
+  def toDays(): BigInt                         = (seconds / Time.DAYS_SEC).abs
+  def toHours(over: Boolean = false): BigInt   = ((if over then seconds else seconds % Time.DAYS_SEC) / Time.HOURS_SEC).abs
+  def toMinutes(over: Boolean = false): BigInt = ((if over then seconds else seconds % Time.HOURS_SEC) / Time.MINUTES_SEC).abs
+  def toSeconds(over: Boolean = false): BigInt = ((if over then seconds else seconds % Time.MINUTES_SEC)).abs
 }
 
 object Time {
