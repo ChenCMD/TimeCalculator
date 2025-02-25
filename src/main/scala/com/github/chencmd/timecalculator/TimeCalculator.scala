@@ -67,7 +67,8 @@ def UserInput(expressionVar: Var[String], formatVar: Var[ResultFormat]) = {
   div(
     input(
       `type`          := "text",
-      size <-- expressionVar.signal.map(s => Math.max(s.length - 2, 10)),
+      size            := 50,
+      placeholder     := "Enter an expression",
       controlled(
         value <-- expressionVar.signal,
         onInput.mapToValue.filter(expressionInputValidator) --> expressionVar.writer
